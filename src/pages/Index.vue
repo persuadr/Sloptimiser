@@ -78,7 +78,7 @@ export default {
     },
   },
   mounted() {
-    const filename = 'https://persuadrai.github.io/Sloptimiser/table.csv';
+    const filename = 'https://persuadr.github.io/Sloptimiser/table.csv';
     Papa.parse(filename, {
       download: true,
       worker: true,
