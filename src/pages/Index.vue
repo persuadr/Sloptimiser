@@ -88,7 +88,7 @@ export default {
       fastMode: true,
       step: (row, parser) => {
         this.$store.dispatch('addRow', row.data);
-        if (row.errors) {
+        if (row.errors.length) {
           console.error('Row errors:', row.errors);
           parser.abort();
         }
