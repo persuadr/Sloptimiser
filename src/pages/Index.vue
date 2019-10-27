@@ -86,9 +86,12 @@ export default {
       delimiter: ',',
       header: true,
       fastMode: true,
-      step: (row) => {
+      step: (row, parser) => {
         this.$store.dispatch('addRow', row.data);
-        console.error('Row errors:', row.errors);
+        if (row.errors) {
+          console.error('Row errors:', row.errors);
+          parser.abort();
+        }
       },
       complete: () => {
         this.$store.dispatch('setDownloadComplete');
