@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  web:
+    image: node:alpine
+    volumes:
+      - .:/home/node
+    user: node
+    working_dir: /home/node
+    command: npx quasar dev
+    ports:
+      - "8080:8080"
