@@ -3,7 +3,7 @@
     <h2 class="text-center q-mb-md">Sloptimiser</h2>
     <h5 class="text-center q-mt-none">Find the best formulation for your slogan given your target.</h5>
     <div class="row">
-      <div class="col-lg-6 offset-lg-1">
+      <div class="col-lg-8 offset-md-1">
         <h6 class="q-mb-sm">Enter a sentence, enter synonyms for each meaningful word,
           select a target audience, enjoy.</h6>
         <span>More information on how it's working can be found in
@@ -11,8 +11,8 @@
           Medium post.</span>
       </div>
     </div>
-    <div class="row q-mt-xl">
-      <div class="col-lg-10 offset-lg-1">
+    <div class="row q-mt-xl justify-center">
+      <div class="col-xs-10">
         <q-stepper v-model="step" color="primary" animated keep-alive header-nav>
           <q-step :name="1" title="Enter your sentence" icon="create">
             <q-input outlined label="Enter your sentence" v-model="sentence" @keypress.enter="splitSentence"/>
@@ -224,7 +224,7 @@ export default {
       return a;
     },
     calculateCombinations() {
-      this.allcomb = this.cartesian(...this.words.map(w => w.selected));
+      this.allcomb = this.cartesian(...this.words.filter(w => w.show).map(w => w.selected));
       this.step += 1;
     },
     calculate() {
