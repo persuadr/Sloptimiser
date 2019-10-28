@@ -20,7 +20,11 @@ export default function (/* { ssrContext } */) {
         state.csvcomplete = true;
       },
       addRow(state, row) {
-        state.table.set(row.Word, row);
+        const firstLetter = row.Word[0];
+        if (!state.table.has(firstLetter)) {
+          state.table.set(firstLetter, new Map());
+        }
+        state.table.get(firstLetter).set(row.Word, row);
       },
     },
 
