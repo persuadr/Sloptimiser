@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <h2 class="text-center q-mb-md">Sloptimiser</h2>
+    <h2 class="text-center q-mb-md">Wordimiser</h2>
     <h5 class="text-center q-mt-none">Find the best formulation for your slogan given your target.</h5>
     <div class="row">
       <div class="col-lg-8 offset-md-1">

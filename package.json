@@ -1,8 +1,8 @@
 {
-  "name": "sloptimiser",
+  "name": "wordimiser",
   "version": "0.0.1",
   "description": "Slogan optimiser for emotional load of synonyms",
-  "productName": "Sloptimiser",
+  "productName": "Wordimiser",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "Emmanuel Hadoux",

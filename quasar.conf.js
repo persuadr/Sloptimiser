@@ -48,7 +48,7 @@ module.exports = function (ctx) {
       scopeHoisting: true,
       vueRouterMode: 'history',
       distDir: 'docs',
-      publicPath: 'Sloptimiser',
+      publicPath: 'Wordimiser',
       // showProgress: false,
       // gzip: true,
       // analyze: true,
