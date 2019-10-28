@@ -141,7 +141,7 @@ export default {
   },
   async mounted() {
     const filename = (process.env.NODE_ENV === 'production')
-      ? 'https://persuadr.github.io/Sloptimiser/statics/table.csv'
+      ? 'https://persuadr.github.io/Wordimiser/statics/table.csv'
       : 'http://localhost:8080/statics/table.csv';
     Papa.parse(filename, {
       download: true,
