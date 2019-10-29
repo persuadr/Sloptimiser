@@ -32,10 +32,9 @@
           </q-step>
 
           <q-step :name="3" title="Enter synonyms to evaluate" icon="create">
-            <div class="text-subtitle-1">Start typing under each word, suggestions of synonyms will be presented.
-              Only words from the suggestions can be used. Note that verbs are in the infinitive form
-              and nouns are singular.<br>To be sure your words are in the database,
-              you need to enter them as synonym of themselves.</div>
+            <div class="text-subtitle-1">Start typing under each word, suggestions of words will be presented.
+              Only words from the suggestions can be used as synonyms.<br>
+              To be sure your words are in the database, you need to enter them as synonym of themselves.</div>
             <q-markup-table class="q-mt-md" flat>
               <thead>
                 <tr>
@@ -224,7 +223,8 @@ export default {
       return a;
     },
     calculateCombinations() {
-      this.allcomb = this.cartesian(...this.words.filter(w => w.show).map(w => w.selected));
+      this.allcomb = this.cartesian(...this.words.filter(w => (w.show && (w.selected.length > 1)))
+        .map(w => w.selected));
       this.step += 1;
     },
     calculate() {
@@ -254,10 +254,12 @@ export default {
       }
       const struct = this.allcomb.map(comb => ({
         comb,
-        valence: comb.reduce((w, acc) => Math.min(this.$store.state.table.get(acc[0]).get(acc)[valenceF],
-          this.$store.state.table.get(w[0]).get(w)[valenceF])),
-        arousal: comb.reduce((w, acc) => Math.max(Math.abs(this.$store.state.table.get(acc[0]).get(acc)[arousalF] - 5),
-          Math.abs(this.$store.state.table.get(w[0]).get(w)[arousalF] - 5))),
+        valence: comb.slice(1).reduce((acc, w) => Math.min(acc,
+          this.$store.state.table.get(w[0]).get(w)[valenceF]),
+        this.$store.state.table.get(comb[0][0]).get(comb[0])[valenceF]),
+        arousal: comb.slice(1).reduce((acc, w) => Math.max(acc,
+          Math.abs(this.$store.state.table.get(w[0]).get(w)[arousalF] - 5)),
+        Math.abs(this.$store.state.table.get(comb[0][0]).get(comb[0])[arousalF] - 5)),
       }));
       struct.sort((a, b) => {
         if (a.arousal < b.arousal) {
